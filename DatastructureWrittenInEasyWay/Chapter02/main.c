@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "quiz_02.c"
+#include "exercise_17.c"
 
 int main(){
-    printf("%d\n", sub(10));
+    printf("%d\n", binomialCoefficient(0, 0));
     return 0;
 }
