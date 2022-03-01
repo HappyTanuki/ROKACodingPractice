@@ -1,14 +1,14 @@
 #include <stdio.h>
 
-void asterisk(int i){
+void Asterisk(int i){
     if(i > 1){
-        asterisk(i/2);
-        asterisk(i/2);
+        Asterisk(i/2);
+        Asterisk(i/2);
     }
     printf("*");
 }
 
 int main(){
-    asterisk(5);
+    Asterisk(5);
     return 0;
 }

@@ -1,17 +1,17 @@
 #include <stdio.h>
 
-int fib(int n){
-    printf("fib(%d) is called\n", n);
+int Fib(int n){
+    printf("Fib(%d) is called\n", n);
     if (n == 0){
         return 0;
     }
     if (n == 1){
         return 1;
     }
-    return fib(n - 1) + fib(n - 2);
+    return Fib(n - 1) + Fib(n - 2);
 }
 
 int main(){
-    fib(6);
+    Fib(6);
     return 0;
 }

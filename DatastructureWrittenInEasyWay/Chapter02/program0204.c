@@ -1,4 +1,4 @@
-double slow_power(double x, int n){
+double SlowPower(double x, int n){
     int i;
     double result = 1.0;
 

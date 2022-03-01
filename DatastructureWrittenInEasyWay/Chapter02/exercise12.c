@@ -1,14 +1,14 @@
 #include <stdio.h>
 
-void unknown(){
+void Unknown(){
     int ch;
     if ((ch = getchar()) != '\n'){
-        unknown();
+        Unknown();
     }
     putchar(ch);
 }
 
 int main(){
-    unknown();
+    Unknown();
     return 0;
 }

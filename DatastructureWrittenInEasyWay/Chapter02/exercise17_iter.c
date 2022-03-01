@@ -1,4 +1,4 @@
-int binomialCoefficient(int n, int r){
+int BinomialCoefficient(int n, int r){
     int i = 0, result = 1;
 
     for(i = n; i >= (n - r + 1); i--){

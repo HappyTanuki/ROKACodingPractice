@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-double divideSum(double n){
+double DivideSum(double n){
     if (n < 1){
         return 0;
     }
-    return (1 / n + divideSum(n - 1));
+    return (1 / n + DivideSum(n - 1));
 }
 
 int main(){
-    printf("%lf, ", divideSum(2));
+    printf("%lf, ", DivideSum(2));
     return 0;
 }

@@ -1,4 +1,4 @@
-int ackermann(int m, int n){
+int Ackermann(int m, int n){
     int stack[2][100000] = {0, }, stackTop = 0;
 
     stack[0][stackTop] = m;
