@@ -3,15 +3,11 @@
 
 #define MAX_TERMS 101
 
-#pragma pack(push, 1)
 typedef struct {
     float coef;
     int expon;
 } Polynomial;
-#pragma pack(pop)
-
 Polynomial terms[MAX_TERMS] = {{8, 3}, {7, 1}, {1, 0}, {10, 3}, {3, 2}, {1, 0}};
-
 int avail = 6;
 
 char Compare(int a, int b){
@@ -76,48 +72,25 @@ void PrintPoly(int s, int e){
     printf("%3.1fx^%d\n", terms[e].coef, terms[e].expon);
 }
 
-void PolyRead(FILE *file_pointer, int *a_s, int *a_e, int *b_s, int *b_e, int *c_s, int *c_e){
-    file_pointer = fopen("file.dat", "rb");
-    fread(   a_s,        sizeof(int),         1, file_pointer);
-    fread(   a_e,        sizeof(int),         1, file_pointer);
-    fread(   b_s,        sizeof(int),         1, file_pointer);
-    fread(   b_e,        sizeof(int),         1, file_pointer);
-    fread(   c_s,        sizeof(int),         1, file_pointer);
-    fread(   c_e,        sizeof(int),         1, file_pointer);
-    fread( terms, sizeof(Polynomial), MAX_TERMS, file_pointer);
-    fread(&avail,        sizeof(int),         1, file_pointer);
-    fclose(file_pointer);
-    return;
-}
+float PolyEval(int s, int e, int x){
+    float result = 0;
 
-void PolyWrite(FILE *file_pointer, int a_s, int a_e, int b_s, int b_e, int c_s, int c_e){
-    file_pointer = fopen("file.dat", "ab");
-    fwrite(  &a_s,        sizeof(int),         1, file_pointer);
-    fwrite(  &a_e,        sizeof(int),         1, file_pointer);
-    fwrite(  &b_s,        sizeof(int),         1, file_pointer);
-    fwrite(  &b_e,        sizeof(int),         1, file_pointer);
-    fwrite(  &c_s,        sizeof(int),         1, file_pointer);
-    fwrite(  &c_e,        sizeof(int),         1, file_pointer);
-    fwrite( terms, sizeof(Polynomial), MAX_TERMS, file_pointer);
-    fwrite(&avail,        sizeof(int),         1, file_pointer);
-    fclose(file_pointer);
-    return;
+    for (int i = s; i <= e; i++){
+        result += terms[i].coef * pow(x, terms[i].expon);
+    }
+
+    return result;
 }
 
 int main(){
-    FILE *file_pointer;
     int a_s = 0, a_e = 2, b_s = 3, b_e = 5, c_s, c_e;
     PolyAdd2(a_s, a_e, b_s, b_e, &c_s, &c_e);
 
     PrintPoly(a_s, a_e);
     PrintPoly(b_s, b_e);
-    PolyWrite(file_pointer, a_s, a_e, b_s, b_e, c_s, c_e);
-    PolyRead(file_pointer, &a_s, &a_e, &b_s, &b_e, &c_s, &c_e);
-    printf("---------------------------------------------------------------------\n");
-    PrintPoly(a_s, a_e);
-    PrintPoly(b_s, b_e);
     printf("---------------------------------------------------------------------\n");
     PrintPoly(c_s, c_e);
+    printf("%3.1f\n", PolyEval(a_s, a_e, 2));
     
     return 0;
 }

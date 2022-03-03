@@ -65,7 +65,7 @@ void PolyAdd2(int a_s, int a_e, int b_s, int b_e, int *c_s, int *c_e){
     *c_e = avail - 1;
 }
 
-void print_poly(int s, int e){
+void PrintPoly(int s, int e){
     for (int i = s; i < e; i++){
         printf("%3.1fx^%d + ", terms[i].coef, terms[i].expon);
     }
@@ -76,10 +76,10 @@ int main(){
     int a_s = 0, a_e = 2, b_s = 3, b_e = 5, c_s, c_e;
     PolyAdd2(a_s, a_e, b_s, b_e, &c_s, &c_e);
 
-    print_poly(a_s, a_e);
-    print_poly(b_s, b_e);
+    PrintPoly(a_s, a_e);
+    PrintPoly(b_s, b_e);
     printf("---------------------------------------------------------------------\n");
-    print_poly(c_s, c_e);
+    PrintPoly(c_s, c_e);
     
     return 0;
 }

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
 #define MAX_DEGREE 101
 
@@ -35,13 +36,19 @@ Polynomial PolyAdd1(Polynomial a, Polynomial b){
 
 void PrintPoly(Polynomial p){
     for (int i = p.degree; i > 0; i--){
-        if (p.coef[p.degree - i] != 0){
-            printf("%3.1fx^%d + ", p.coef[p.degree - i], i);
-        }
+        printf("%3.1fx^%d + ", p.coef[p.degree - i], i);
     }
-    if (p.coef[p.degree] != 0){
-        printf("%3.1f \n", p.coef[p.degree]);
+    printf("%3.1f \n", p.coef[p.degree]);
+}
+
+float PolyEval(Polynomial p, int x){
+    float result = 0;
+
+    for (int i = p.degree; i >= 0; i--){
+        result += p.coef[p.degree - i] * pow(x, i);
     }
+
+    return result;
 }
 
 int main(){
@@ -54,6 +61,7 @@ int main(){
     c = PolyAdd1(a, b);
     printf("---------------------------------------------------------------------\n");
     PrintPoly(c);
+    printf("%3.1f\n", PolyEval(a, 2));
     
     return 0;
 }

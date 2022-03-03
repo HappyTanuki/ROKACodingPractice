@@ -33,7 +33,7 @@ Polynomial PolyAdd1(Polynomial a, Polynomial b){
     return c;
 }
 
-void print_poly(Polynomial p){
+void PrintPoly(Polynomial p){
     for (int i = p.degree; i > 0; i--){
         printf("%3.1fx^%d + ", p.coef[p.degree - i], i);
     }
@@ -45,11 +45,11 @@ int main(){
     Polynomial b = {3, {-1, 0, 4, -1}};
     Polynomial c;
 
-    print_poly(a);
-    print_poly(b);
+    PrintPoly(a);
+    PrintPoly(b);
     c = PolyAdd1(a, b);
     printf("---------------------------------------------------------------------\n");
-    print_poly(c);
+    PrintPoly(c);
     
     return 0;
 }

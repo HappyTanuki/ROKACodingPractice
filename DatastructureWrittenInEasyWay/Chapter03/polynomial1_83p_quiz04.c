@@ -66,14 +66,14 @@ int main(){
     Polynomial b = {4, {7, 0, 5, 0, 1}};
     Polynomial c;
 
-    print_poly(a);
+    PrintPoly(a);
     PolyWrite(file_pointer, a);
     a = PolyRead(file_pointer);
-    print_poly(a);
-    print_poly(b);
+    PrintPoly(a);
+    PrintPoly(b);
     c = PolyAdd1(a, b);
     printf("---------------------------------------------------------------------\n");
-    print_poly(c);
+    PrintPoly(c);
     
     return 0;
 }
