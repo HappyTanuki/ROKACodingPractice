@@ -75,20 +75,17 @@ void print_poly(int s, int e){
     printf("%3.1fx^%d\n", terms[e].coef, terms[e].expon);
 }
 
-void *PolyRead(FILE *file_pointer){
-    void *p;
+void PolyRead(FILE *file_pointer){
     file_pointer = fopen("file.dat", "rb");
-    fread(p, sizeof(Polynomial), 1, file_pointer);
+    fread(terms, sizeof(Polynomial), MAX_TERMS, file_pointer);
     fclose(file_pointer);
-
-    return p;
+    return;
 }
 
-void PolyWrite(FILE *file_pointer, void* p){
+void PolyWrite(FILE *file_pointer){S
     file_pointer = fopen("file.dat", "ab");
-    fwrite(p, sizeof(Polynomial), 1, file_pointer);
+    fwrite(terms, sizeof(Polynomial), MAX_TERMS, file_pointer);
     fclose(file_pointer);
-
     return;
 }
 
@@ -97,8 +94,8 @@ int main(){
     int a_s = 0, a_e = 2, b_s = 3, b_e = 5, c_s, c_e;
     PolyAdd2(a_s, a_e, b_s, b_e, &c_s, &c_e);
 
-    PolyWrite(file_pointer, terms);
-    terms = (Polynomial *)PolyRead(file_pointer);
+    PolyWrite(file_pointer);
+    PolyRead(file_pointer);
     print_poly(a_s, a_e);
     print_poly(b_s, b_e);
     printf("---------------------------------------------------------------------\n");
